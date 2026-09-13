@@ -1,6 +1,6 @@
 # Булка! — сайт пекарни
 
-**Демо:** https://philippkasharov-bit.github.io/bulka-bakery/
+**Кейс-стади:** [case-study.html](case-study.html) · **Демо:** https://philippkasharov-bit.github.io/bulka-bakery/
 
 Концепт сайта пекарни с доставкой: яркий игривый стиль, каталог с корзиной, отзывы, форма заказа.
 
