@@ -68,7 +68,7 @@ footer{padding:40px 0;font-weight:700}.ft{display:flex;justify-content:space-bet
 .qty{display:flex;align-items:center;gap:8px}.qty button{width:32px;height:32px;border-radius:50%;border:2px solid #3a1f0f;background:#fff4e0;color:#3a1f0f;font-weight:900;cursor:pointer}.qty output{min-width:2ch;text-align:center;font-weight:700}
 .dr-empty{text-align:center;padding:40px 0;font-weight:700}.dr-empty .btn{font-size:17px;padding:14px 24px}
 .dr-foot{border-top:3px solid #3a1f0f;padding-top:16px}.dr-foot .btn{display:block;text-align:center;margin-top:14px}
-.dr-bar{height:10px;border:2px solid #3a1f0f;border-radius:10px;overflow:hidden;background:#fff}.dr-bar i{display:block;height:100%;background:#8fd3a8;width:0;transition:width .4s}
+.dr-bar{height:10px;border:2px solid #3a1f0f;border-radius:10px;overflow:hidden;background:#fff}.dr-bar i{display:block;height:100%;background:#8fd3a8;transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.16,1,.3,1)}
 .dr-hint{font-size:14px;font-weight:700;margin:8px 0 10px}
 .dr-total{display:flex;justify-content:space-between;font-family:Rubik,"Arial Black",sans-serif;font-size:24px}
 .summary{background:#fff4e0;color:#3a1f0f;border:3px solid #3a1f0f;border-radius:18px;padding:14px 18px;margin-bottom:12px;font-weight:700;font-size:15px}
@@ -150,8 +150,8 @@ footer{padding:40px 0;font-weight:700}.ft{display:flex;justify-content:space-bet
     $('dr-empty').hidden = list.length > 0;
     $('dr-foot').hidden = list.length === 0;
     const left = FREE - sum;
-    $('dr-progress').style.width = `${Math.min(100, sum / FREE * 100)}%`;
-    $('dr-hint').textContent = left > 0 ? `Ещё ${fmt(left)} до бесплатной доставки` : 'Доставка бесплатная 🎉'.replace(' 🎉', '');
+    $('dr-progress').style.transform = `scaleX(${Math.min(1, sum / FREE)})`;
+    $('dr-hint').textContent = left > 0 ? `Ещё ${fmt(left)} до бесплатной доставки` : 'Доставка бесплатная';
     const total = sum + (left > 0 ? DELIVERY : 0);
     $('dr-sum').textContent = fmt(total);
     // сводка в форме заказа
