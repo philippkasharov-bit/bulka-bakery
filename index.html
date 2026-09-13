@@ -34,13 +34,13 @@ section.blk{padding:90px 0}
 .card h3{font-family:Rubik,"Arial Black",sans-serif;font-size:22px}.card p{font-size:14px;opacity:.75;margin:6px 0 16px;flex:1}
 .buy{display:flex;justify-content:space-between;align-items:center}.buy b{color:#ff5a36;font-size:22px;font-family:Rubik,"Arial Black",sans-serif}
 .add{width:44px;height:44px;border-radius:50%;border:3px solid #3a1f0f;background:#ffd23f;color:#3a1f0f;cursor:pointer;display:grid;place-items:center;transition:transform .15s,background .2s}.add:hover{transform:scale(1.08)}.add:active{transform:scale(.94)}.add.done{background:#8fd3a8}
-.why{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.why-wrap{display:grid;grid-template-columns:1fr 1fr;gap:22px}.baker{border:3px solid #3a1f0f;border-radius:26px;box-shadow:6px 6px 0 #3a1f0f;background:#f6e7c8 url(baker.jpg) center/cover;min-height:340px}.why{display:grid;grid-template-columns:1fr;gap:18px}
 .w{border:3px solid #3a1f0f;border-radius:26px;padding:30px;background:#ffd23f}.w:nth-child(2){background:#8fd3a8}.w:nth-child(3){background:#ff9fb2}
 .w b{font-family:Rubik,"Arial Black",sans-serif;font-size:44px;display:block}.w p{font-weight:700;font-size:17px}
 .revs{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .r{background:#fff;border:3px solid #3a1f0f;border-radius:26px;padding:26px}.r .s{color:#ff5a36;display:flex;gap:2px}.r p{margin:10px 0 14px}.r small{font-weight:700}
 .order{background:#ff5a36;border:3px solid #3a1f0f;border-radius:34px;padding:56px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;color:#fff;box-shadow:10px 10px 0 #3a1f0f}
-.order h2{margin-bottom:14px}.order p{font-size:19px}
+.bag{width:150px;height:150px;border-radius:50%;border:3px solid #3a1f0f;background:#fff4e0 url(delivery.jpg) center/cover;margin-bottom:22px;box-shadow:5px 5px 0 #3a1f0f}.order h2{margin-bottom:14px}.order p{font-size:19px}
 form{display:grid;gap:12px}input{padding:16px 18px;border:3px solid #3a1f0f;border-radius:16px;font:inherit;font-weight:700}
 form .btn{margin-top:4px;background:#ffd23f;color:#3a1f0f}input:focus{outline:none;box-shadow:4px 4px 0 #3a1f0f}input[aria-invalid]{background:#fff0ec;border-color:#3a1f0f}.form-msg{font-weight:700;min-height:1.5em}.form-msg[data-state=error]{color:#fff;background:#3a1f0f;padding:8px 14px;border-radius:12px}.form-msg[data-state=ok]{color:#3a1f0f;background:#ffd23f;padding:8px 14px;border-radius:12px;border:3px solid #3a1f0f}.form-msg:empty{padding:0;border:0;background:none}
 footer{padding:40px 0;font-weight:700}.ft{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
@@ -49,7 +49,7 @@ footer{padding:40px 0;font-weight:700}.ft{display:flex;justify-content:space-bet
  .burger{display:block}.cart{display:none}
  nav{display:none;position:absolute;top:78px;left:0;right:0;background:#fff4e0;border-bottom:3px solid #3a1f0f;flex-direction:column;padding:16px 5vw}nav.open{display:flex}nav a{margin:10px 0;font-size:20px}
  .hero,.order{grid-template-columns:1fr}.art{height:330px}.c1{width:230px;height:230px;font-size:110px;left:0}.c2{width:120px;height:120px;font-size:60px}.c3{width:130px;height:130px;font-size:60px}
- .cards{grid-template-columns:1fr 1fr}.why,.revs{grid-template-columns:1fr}.order{padding:30px}section.blk{padding:60px 0}
+ .cards{grid-template-columns:1fr 1fr}.why,.revs,.why-wrap{grid-template-columns:1fr}.baker{min-height:240px}.order{padding:30px}section.blk{padding:60px 0}
 }
 @media(max-width:520px){.cards{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.c,.tick div{animation:none}.js .reveal,.js .cards.reveal .card{opacity:1;transform:none;transition:none}}
@@ -77,11 +77,11 @@ footer{padding:40px 0;font-weight:700}.ft{display:flex;justify-content:space-bet
 </div></div></section>
 
 <section class="blk" id="why" style="padding-top:0"><div class="wrap"><h2 class="reveal">Почему <span style="color:#ff5a36">Булка?</span></h2>
-<div class="why">
+<div class="why-wrap"><div class="baker" role="img" aria-label="Пекарь достаёт хлеб из печи"></div><div class="why">
 <div class="w"><b>30 мин</b><p>Привозим горячим, пока хрустит корочка</p></div>
 <div class="w"><b>0</b><p>Улучшителей, консервантов и маргарина</p></div>
 <div class="w"><b>6:30</b><p>Первая партия уже готова к вашему завтраку</p></div>
-</div></div></section>
+</div></div></div></section>
 
 <section class="blk" id="reviews" style="padding-top:0"><div class="wrap"><h2 class="reveal">Нас <span style="color:#ff5a36">любят</span></h2>
 <div class="revs">
@@ -91,7 +91,7 @@ footer{padding:40px 0;font-weight:700}.ft{display:flex;justify-content:space-bet
 </div></div></section>
 
 <section class="blk" id="order" style="padding-top:0"><div class="wrap"><div class="order reveal">
-<div><h2>Первая доставка бесплатно</h2><p>Оставьте телефон — перезвоним за 5 минут и примем заказ.</p></div>
+<div><div class="bag" role="img" aria-label="Пакет со свежей выпечкой"></div><h2>Первая доставка бесплатно</h2><p>Оставьте телефон — перезвоним за 5 минут и примем заказ.</p></div>
 <form><input aria-label="Как вас зовут?" required placeholder="Как вас зовут?"><input aria-label="Телефон" required type="tel" autocomplete="tel" placeholder="Телефон"><input aria-label="Адрес доставки" required placeholder="Адрес доставки"><button class="btn">Жду выпечку!</button></form>
 </div></div></section>
 
