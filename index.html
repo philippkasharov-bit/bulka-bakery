@@ -1,0 +1,96 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Булка! — пекарня у дома с доставкой</title><meta name="description" content="Пекарня «Булка!»: хлеб на закваске, круассаны и выпечка из печи каждые 2 часа. Доставка за 30 минут.">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;800;900&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:Nunito,sans-serif;background:#fff4e0;color:#3a1f0f;line-height:1.5}a{color:inherit;text-decoration:none}
+.wrap{max-width:1240px;margin:auto;padding:0 5vw}
+header{position:sticky;top:0;z-index:10;background:#fff4e0;border-bottom:3px solid #3a1f0f}
+.hd{display:flex;justify-content:space-between;align-items:center;height:78px}
+.logo{font-family:Rubik,"Arial Black",sans-serif;font-weight:900;font-size:34px;color:#ff5a36;transform:rotate(-4deg);display:inline-block}
+nav a{margin:0 14px;font-weight:700}nav a:hover{color:#ff5a36}
+.cart{background:#3a1f0f;color:#fff4e0;padding:12px 22px;border-radius:40px;font-weight:700}
+.burger{display:none;background:#ffd23f;border:3px solid #3a1f0f;border-radius:12px;font-size:20px;padding:4px 10px;cursor:pointer}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;align-items:center;padding:40px 0 70px;gap:30px}
+.sticker{display:inline-block;background:#ffd23f;padding:8px 16px;border-radius:40px;font-weight:700;transform:rotate(-3deg);border:2px solid #3a1f0f}
+h1{font-family:Rubik,"Arial Black",sans-serif;font-weight:900;font-size:clamp(50px,7.5vw,106px);line-height:.92;margin:22px 0;text-transform:uppercase}
+h1 span{color:#ff5a36}h1 em{font-style:normal;display:inline-block;white-space:nowrap;background:#8fd3a8;padding:0 14px;border-radius:20px;border:3px solid #3a1f0f}
+h2{font-family:Rubik,"Arial Black",sans-serif;font-weight:900;font-size:clamp(38px,5vw,64px);text-transform:uppercase;line-height:1;margin-bottom:30px}
+.hero p{font-size:20px;max-width:480px}
+.btn{display:inline-block;margin-top:30px;background:#ff5a36;color:#fff;font-family:Rubik,"Arial Black",sans-serif;font-weight:800;font-size:20px;padding:18px 34px;border-radius:50px;border:3px solid #3a1f0f;box-shadow:6px 6px 0 #3a1f0f;cursor:pointer;transition:.15s}
+.btn:hover{transform:translate(3px,3px);box-shadow:3px 3px 0 #3a1f0f}
+.art{position:relative;height:460px}
+.c{position:absolute;border-radius:50%;border:4px solid #3a1f0f;display:grid;place-items:center;font-size:90px;box-shadow:8px 8px 0 #3a1f0f;animation:float 5s ease-in-out infinite}
+.c1{width:340px;height:340px;background:#ffd23f;left:0;top:50px;font-size:150px}.c2{width:170px;height:170px;background:#8fd3a8;right:20px;top:-10px;animation-delay:-1.5s}.c3{width:190px;height:190px;background:#ff9fb2;right:20px;bottom:-30px;animation-delay:-3s}
+@keyframes float{50%{transform:translateY(-14px) rotate(4deg)}}
+.tick{background:#3a1f0f;color:#ffd23f;font-family:Rubik,"Arial Black",sans-serif;font-weight:800;font-size:28px;padding:18px 0;white-space:nowrap;overflow:hidden;text-transform:uppercase}
+.tick div{display:inline-block;animation:run 22s linear infinite}@keyframes run{to{transform:translateX(-50%)}}
+section.blk{padding:90px 0}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.card{background:#fff;border:3px solid #3a1f0f;border-radius:26px;padding:24px;box-shadow:6px 6px 0 #3a1f0f;display:flex;flex-direction:column}
+.card .e{font-size:64px;aspect-ratio:1;height:auto;display:grid;place-items:center;border-radius:18px;margin-bottom:14px}
+.card h3{font-family:Rubik,"Arial Black",sans-serif;font-size:22px}.card p{font-size:14px;opacity:.75;margin:6px 0 16px;flex:1}
+.buy{display:flex;justify-content:space-between;align-items:center}.buy b{color:#ff5a36;font-size:22px;font-family:Rubik,"Arial Black",sans-serif}
+.add{width:44px;height:44px;border-radius:50%;border:3px solid #3a1f0f;background:#ffd23f;font-size:22px;font-weight:900;color:#3a1f0f;cursor:pointer}
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.w{border:3px solid #3a1f0f;border-radius:26px;padding:30px;background:#ffd23f}.w:nth-child(2){background:#8fd3a8}.w:nth-child(3){background:#ff9fb2}
+.w b{font-family:Rubik,"Arial Black",sans-serif;font-size:44px;display:block}.w p{font-weight:700;font-size:17px}
+.revs{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.r{background:#fff;border:3px solid #3a1f0f;border-radius:26px;padding:26px}.r .s{color:#ff5a36;font-size:20px}.r p{margin:10px 0 14px}.r small{font-weight:700}
+.order{background:#ff5a36;border:3px solid #3a1f0f;border-radius:34px;padding:56px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;color:#fff;box-shadow:10px 10px 0 #3a1f0f}
+.order h2{margin-bottom:14px}.order p{font-size:19px}
+form{display:grid;gap:12px}input{padding:16px 18px;border:3px solid #3a1f0f;border-radius:16px;font:inherit;font-weight:700}
+form .btn{margin-top:4px;background:#ffd23f;color:#3a1f0f}
+footer{padding:40px 0;font-weight:700}.ft{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
+.reveal{opacity:0;transform:translateY(30px);transition:.6s}.reveal.in{opacity:1;transform:none}
+@media(max-width:900px){
+ .burger{display:block}.cart{display:none}
+ nav{display:none;position:absolute;top:78px;left:0;right:0;background:#fff4e0;border-bottom:3px solid #3a1f0f;flex-direction:column;padding:16px 5vw}nav.open{display:flex}nav a{margin:10px 0;font-size:20px}
+ .hero,.order{grid-template-columns:1fr}.art{height:330px}.c1{width:230px;height:230px;font-size:110px;left:0}.c2{width:120px;height:120px;font-size:60px}.c3{width:130px;height:130px;font-size:60px}
+ .cards{grid-template-columns:1fr 1fr}.why,.revs{grid-template-columns:1fr}.order{padding:30px}section.blk{padding:60px 0}
+}
+@media(max-width:520px){.cards{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.c,.tick div{animation:none}.reveal{opacity:1;transform:none;transition:none}}
+</style></head><body>
+<header><div class="wrap hd"><a class="logo" href="#">Булка!</a>
+<nav><a href="#menu">Меню</a><a href="#why">Почему мы</a><a href="#reviews">Отзывы</a><a href="#order">Доставка</a></nav>
+<a class="cart" href="#order">Корзина · <span id="cnt">0</span></a><button class="burger" aria-label="Меню" aria-expanded="false">☰</button></div></header>
+
+<div class="wrap"><section class="hero"><div><span class="sticker">🔥 Из печи каждые 2 часа</span>
+<h1>Тёплый <span>хлеб</span> <em>к завтраку</em></h1>
+<p>Печём на закваске без улучшителей и привозим за 30 минут. Первая доставка — бесплатно.</p>
+<a class="btn" href="#menu">Заказать выпечку →</a></div>
+<div class="art" aria-hidden="true"><div class="c c1" style="background:#fff4e0 url(croissant.jpg) center/115%"></div><div class="c c2" style="background:#f6e7c8 url(bread.jpg) center/125%"></div><div class="c c3" style="background:#f6e7c8 url(cinnabon.jpg) center/125%"></div></div></section></div>
+
+<div class="tick" aria-hidden="true"><div>★ Круассаны ★ Багеты ★ Синнабоны ★ Хлеб на закваске ★ Брецели ★ Круассаны ★ Багеты ★ Синнабоны ★ Хлеб на закваске ★ Брецели&nbsp;</div></div>
+
+<section class="blk" id="menu"><div class="wrap"><h2 class="reveal">Сегодня <span style="color:#ff5a36">в печи</span></h2>
+<div class="cards">
+<div class="card reveal"><div class="e" style="background:#f6e7c8 url(croissant.jpg) center/cover no-repeat"></div><h3>Круассан</h3><p>Французское масло 82%, 27 слоёв</p><div class="buy"><b>149 ₽</b><button class="add" aria-label="В корзину">+</button></div></div>
+<div class="card reveal"><div class="e" style="background:#f6e7c8 url(bread.jpg) center/cover"></div><h3>Хлеб на закваске</h3><p>Пшеничная закваска, 36 часов ферментации</p><div class="buy"><b>290 ₽</b><button class="add" aria-label="В корзину">+</button></div></div>
+<div class="card reveal"><div class="e" style="background:#f6e7c8 url(cinnabon.jpg) center/cover"></div><h3>Синнабон</h3><p>Корица, сливочный сыр, много любви</p><div class="buy"><b>210 ₽</b><button class="add" aria-label="В корзину">+</button></div></div>
+<div class="card reveal"><div class="e" style="background:#f6e7c8 url(pretzel.jpg) center/cover"></div><h3>Брецель</h3><p>Хрустящая корочка и крупная соль</p><div class="buy"><b>120 ₽</b><button class="add" aria-label="В корзину">+</button></div></div>
+</div></div></section>
+
+<section class="blk" id="why" style="padding-top:0"><div class="wrap"><h2 class="reveal">Почему <span style="color:#ff5a36">Булка?</span></h2>
+<div class="why">
+<div class="w reveal"><b>30 мин</b><p>Привозим горячим, пока хрустит корочка</p></div>
+<div class="w reveal"><b>0</b><p>Улучшителей, консервантов и маргарина</p></div>
+<div class="w reveal"><b>6:30</b><p>Первая партия уже готова к вашему завтраку</p></div>
+</div></div></section>
+
+<section class="blk" id="reviews" style="padding-top:0"><div class="wrap"><h2 class="reveal">Нас <span style="color:#ff5a36">любят</span></h2>
+<div class="revs">
+<div class="r reveal"><div class="s">★★★★★</div><p>Круассаны как в Париже, только привозят за 20 минут. Теперь это наш воскресный ритуал.</p><small>Аня, Хамовники</small></div>
+<div class="r reveal"><div class="s">★★★★★</div><p>Хлеб на закваске стоит несколько дней и не черствеет. Дети просят синнабоны каждый день.</p><small>Дмитрий, Сокол</small></div>
+<div class="r reveal"><div class="s">★★★★★</div><p>Заказываем выпечку в офис на планёрки. Всегда вовремя и всегда тёплая.</p><small>Команда «Облако»</small></div>
+</div></div></section>
+
+<section class="blk" id="order" style="padding-top:0"><div class="wrap"><div class="order reveal">
+<div><h2>Первая доставка бесплатно</h2><p>Оставьте телефон — перезвоним за 5 минут и примем заказ.</p></div>
+<form><input required placeholder="Как вас зовут?"><input required type="tel" placeholder="Телефон"><input required placeholder="Адрес доставки"><button class="btn">Жду выпечку!</button></form>
+</div></div></section>
+
+<footer><div class="wrap ft"><span>© 2026 Булка! · ежедневно 6:30–22:00</span><span>Концепт-проект · дизайн и разработка PCash</span></div></footer>
+<script src="shared.js"></script>
+<script>let n=0;document.querySelectorAll('.add').forEach(b=>b.addEventListener('click',()=>{document.getElementById('cnt').textContent=++n;b.textContent='✓';setTimeout(()=>b.textContent='+',800)}));</script>
+</body></html>
