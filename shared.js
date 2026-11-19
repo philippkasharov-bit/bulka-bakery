@@ -37,7 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
         bad.setAttribute('aria-invalid', 'true');
         bad.focus();
         msg.dataset.state = 'error';
-        msg.textContent = `Заполните поле «${bad.getAttribute('aria-label')}», чтобы мы могли связаться с вами.`;
+        const name = bad.getAttribute('aria-label') || bad.labels?.[0]?.firstChild?.textContent.trim() || 'поле';
+        msg.textContent = bad.validity.patternMismatch
+          ? `Проверьте поле «${name}»: нужно не меньше 10 цифр.`
+          : `Заполните поле «${name}», чтобы мы могли связаться с вами.`;
         return;
       }
       btn.disabled = true;
