@@ -1,0 +1,83 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Булка — C · Расписание печи</title><meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans+Condensed:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* C · «Расписание печи» — табло вокзала: хлеб приходит по расписанию */
+:root{--board:#0f1a14;--slat:#17251d;--amber:#f2c14e;--paper:#f6f1e7;--tomato:#e4572e;--dim:#9db3a6;
+ --cond:"IBM Plex Sans Condensed","Arial Narrow",sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;--g:clamp(16px,3.4vw,48px)}
+*{margin:0;box-sizing:border-box}
+body{background:var(--board);color:var(--paper);font:500 16px/1.5 var(--cond);-webkit-font-smoothing:antialiased}
+::selection{background:var(--amber);color:var(--board)}
+a{color:inherit;text-decoration:none}:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+header{display:flex;justify-content:space-between;align-items:center;padding:20px var(--g);border-bottom:1px solid #ffffff1f;font:600 13px/1 var(--mono);text-transform:uppercase;letter-spacing:.06em}
+.logo{font:700 24px/1 var(--cond);letter-spacing:0;text-transform:none}.logo b{color:var(--amber)}
+header nav{display:flex;gap:28px}header nav a{padding:10px 0}header nav a:hover{color:var(--amber)}
+.clock{color:var(--amber);font-variant-numeric:tabular-nums}
+.hero{display:grid;grid-template-columns:5fr 7fr;gap:var(--g);padding:clamp(32px,5vw,64px) var(--g);min-height:calc(100svh - 62px);align-items:center}
+h1{font:700 clamp(52px,6.8vw,112px)/.9 var(--cond);letter-spacing:-.02em;text-transform:uppercase}
+h1 em{font-style:normal;color:var(--amber)}
+.lede{margin:28px 0 32px;font-size:clamp(17px,1.4vw,20px);max-width:34ch;color:#d9e2dc}
+.go{display:inline-flex;align-items:center;gap:12px;background:var(--amber);color:var(--board);font:600 15px/1 var(--mono);text-transform:uppercase;letter-spacing:.06em;padding:20px 26px;transition:background .2s}
+.go:hover{background:var(--paper)}
+.board{background:#0a120e;border:1px solid #ffffff14;padding:clamp(14px,2vw,24px);font:600 clamp(13px,1.15vw,17px)/1 var(--mono);text-transform:uppercase;position:relative}
+.bh{display:grid;grid-template-columns:7.2em 1fr 9em;gap:12px;color:var(--dim);font-size:.75em;letter-spacing:.1em;padding:0 0 12px;border-bottom:1px solid #ffffff1f}
+.row{display:grid;grid-template-columns:7.2em 1fr 9em;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid #ffffff10}
+.row.now{background:linear-gradient(90deg,#f2c14e14,transparent)}
+.flap{display:inline-flex;gap:2px}
+.flap i{font-style:normal;display:inline-grid;place-items:center;width:1.15em;height:1.6em;background:var(--slat);border-radius:2px;color:var(--paper);position:relative;overflow:hidden}
+.flap i::after{content:"";position:absolute;inset:50% 0 auto;height:1px;background:#0a120e}
+.flap.t i{color:var(--amber)}
+.flap i.go-flip{animation:flip .09s steps(1) infinite}
+@keyframes flip{50%{transform:scaleY(.15)}}
+.st{font-size:.85em;letter-spacing:.06em}.st.oven{color:var(--tomato)}.st.cool{color:var(--amber)}.st.shelf{color:#8fd3a8}
+.turn{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;margin-top:20px;padding-top:18px;border-top:1px solid #ffffff1f}
+.turn .ph,.turn model-viewer{width:clamp(120px,12vw,180px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 50% 40%,#22342a,#0a120e 70%);--poster-color:transparent;--progress-bar-height:0}
+.turn .ph{background:url(../croissant.jpg) center/120%;filter:saturate(.9)}
+.turn p{font:600 13px/1.5 var(--mono);color:var(--dim);text-transform:uppercase;letter-spacing:.06em}.turn strong{display:block;color:var(--paper);font:700 clamp(22px,2vw,30px)/1.1 var(--cond);text-transform:none;letter-spacing:0;margin-top:4px}
+.turn strong b{color:var(--amber);font-variant-numeric:tabular-nums}
+@media(max-width:860px){header nav{display:none}.hero{grid-template-columns:1fr;min-height:0;gap:28px}.bh,.row{grid-template-columns:6.8em 1fr 7.4em}.board{font-size:12px}.flap i{width:1.05em}h1{font-size:11.6vw}.st{font-size:.72em;letter-spacing:0}}
+@media(prefers-reduced-motion:reduce){.flap i.go-flip{animation:none}}
+</style></head><body>
+<header><a class="logo" href="#">Булка<b>.</b></a><nav aria-label="Разделы"><a href="#">Расписание</a><a href="#">Меню</a><a href="#">Доставка</a></nav><span class="clock" id="clock" aria-label="Текущее время">--:--</span></header>
+<main><section class="hero">
+ <div><h1>Свежее&nbsp;— <em>по&nbsp;расписанию</em></h1>
+ <p class="lede">Печь работает с&nbsp;6:30 и&nbsp;выдаёт партию каждые два часа. Смотрите табло, ловите свою и&nbsp;получайте за&nbsp;30&nbsp;минут, пока не&nbsp;остыло.</p>
+ <a class="go" href="#">Поймать партию →</a></div>
+ <div class="board" role="table" aria-label="Расписание партий на сегодня">
+  <div class="bh" role="row"><span role="columnheader">Время</span><span role="columnheader">Изделие</span><span role="columnheader">Статус</span></div>
+  <div id="rows"></div>
+  <div class="turn"><div class="ph" id="ph"></div><p>Следующая партия<strong id="next">Круассаны · через <b>--</b> мин</strong></p></div>
+ </div>
+</section></main>
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const items = ['Круассаны', 'Хлеб на закваске', 'Синнабоны', 'Брецели'];
+  const now = new Date(), mins = now.getHours() * 60 + now.getMinutes();
+  const pad = n => String(n).padStart(2, '0'), hm = m => `${pad(Math.floor(m / 60) % 24)}:${pad(m % 60)}`;
+  document.getElementById('clock').textContent = hm(mins);
+  // партии каждые 120 мин с 6:30; показываем 2 прошлые и 4 будущие
+  const first = 390, k = Math.max(0, Math.floor((mins - first) / 120)), rows = [];
+  for (let i = k - 1; i <= k + 4; i++) { if (i < 0) continue; const t = first + i * 120; if (t > 22 * 60) break;
+    const d = mins - t, st = d >= 0 && d < 40 ? ['oven', 'В печи'] : d >= 40 && d < 70 ? ['cool', 'Остывает'] : d >= 70 ? ['shelf', 'На полке'] : ['', 'По расписанию'];
+    rows.push({ t: hm(t), name: items[i % items.length], st, now: st[0] === 'oven' }); }
+  const flap = (s, cls = '') => `<span class="flap ${cls}" aria-label="${s}">${[...s].map(c => `<i aria-hidden="true" data-c="${c}">${c === ' ' ? '&nbsp;' : c}</i>`).join('')}</span>`;
+  document.getElementById('rows').innerHTML = rows.map(r => `<div class="row${r.now ? ' now' : ''}" role="row"><span role="cell">${flap(r.t, 't')}</span><span role="cell">${r.name}</span><span role="cell" class="st ${r.st[0]}">${r.st[1]}</span></div>`).join('');
+  const nxt = rows.find(r => r.st[1] === 'По расписанию');
+  if (nxt) { const [h, m] = nxt.t.split(':').map(Number); document.getElementById('next').innerHTML = `${nxt.name} · через <b>${h * 60 + m - mins}</b> мин`; }
+  // сигнатура: сплит-флэп — символы прокручиваются и встают на место
+  if (!reduce) { const ab = '0123456789:'; document.querySelectorAll('.flap i').forEach((el, i) => { const c = el.dataset.c; if (c === ' ') return;
+    el.classList.add('go-flip'); let n = 0; const iv = setInterval(() => { el.textContent = ab[Math.floor(Math.random() * ab.length)]; if (++n > 6 + i % 9) { clearInterval(iv); el.textContent = c; el.classList.remove('go-flip'); } }, 70); }); }
+  // 3D-круассан на «поворотном столе» (десктоп)
+  if (matchMedia('(min-width: 861px)').matches) addEventListener('load', () => setTimeout(() => {
+    const mv = document.createElement('model-viewer');
+    Object.entries({ src: '../media/croissant.glb', 'camera-orbit': '30deg 70deg 0.42m', 'min-camera-orbit': 'auto auto 0.2m', 'rotation-per-second': '40deg', 'interaction-prompt': 'none', 'camera-controls': '', 'disable-zoom': '', exposure: '1.1', 'aria-label': 'Круассан, 3D' }).forEach(([k, v]) => mv.setAttribute(k, v));
+    if (!reduce) mv.setAttribute('auto-rotate', '');
+    mv.addEventListener('load', () => document.getElementById('ph').replaceWith(mv), { once: true }); mv.style.cssText = 'position:absolute;opacity:0;pointer-events:none';
+    document.body.append(mv); mv.addEventListener('load', () => { mv.style.cssText = ''; }, { once: true });
+    import('https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js').catch(() => mv.remove());
+  }, 300), { once: true });
+})();
+</script>
+</body></html>
