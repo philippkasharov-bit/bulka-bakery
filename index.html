@@ -6,7 +6,7 @@
 <meta property="og:type" content="website"><meta property="og:locale" content="ru_RU"><meta property="og:site_name" content="Булка"><meta property="og:title" content="Булка — пекарня у дома с доставкой"><meta property="og:description" content="Хлеб на закваске, круассаны и выпечка из печи каждые 2 часа. Доставка за 30 минут."><meta property="og:image" content="https://philippkasharov-bit.github.io/bulka-bakery/og.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Булка — тёплый хлеб к завтраку"><meta property="og:url" content="https://philippkasharov-bit.github.io/bulka-bakery/"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://philippkasharov-bit.github.io/bulka-bakery/og.jpg">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Bakery","name":"Булка","url":"https://philippkasharov-bit.github.io/bulka-bakery/","image":"https://philippkasharov-bit.github.io/bulka-bakery/og.jpg","description":"Хлеб на закваске, круассаны и выпечка из печи каждые 2 часа. Доставка за 30 минут.","servesCuisine":"Выпечка","priceRange":"₽","openingHours":"Mo-Su 06:30-22:00"}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="image" href="img/v2/hero.webp" fetchpriority="high">
+<link rel="preload" as="image" href="img/v2/oven.webp" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 /* Булка v2 — тихая ремесленная пекарня. Мир: бумага, крафт, чернила штампа, утренний свет. */
@@ -47,31 +47,35 @@ header nav a:hover::after{transform:scaleX(1)}
 .cnt{font-variant-numeric:tabular-nums}
 .burger{display:none;width:44px;height:44px;place-items:center}
 
-/* hero: фото несёт страницу */
-.hero{display:grid;grid-template-columns:5fr 7fr;gap:clamp(32px,5vw,88px);align-items:center;padding:clamp(24px,4vw,56px) 0 0}
-.hero h1{font-size:clamp(48px,6.4vw,104px);line-height:1;margin-bottom:28px}
+/* hero: фото во всю ширину, короткая подпись в спокойном углу */
+.hero{position:relative;height:min(92svh,980px);min-height:560px}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 45%}
+.hero-note{position:absolute;left:0;bottom:0;background:var(--paper);padding:clamp(28px,3.4vw,52px) clamp(28px,4vw,64px) clamp(24px,3vw,44px) var(--g);max-width:min(560px,92vw)}
+.hero h1{font-size:clamp(34px,3.2vw,50px);line-height:1.08;margin-bottom:16px}
 .hero h1 em{font-style:normal;color:var(--kraft-ink)}
-.hero .acts{display:flex;align-items:center;gap:28px;flex-wrap:wrap;margin-top:40px}
-.hero .meta{margin-top:40px;font-size:15px;color:var(--ink-2)}
-.hero figure{position:relative}
-.hero figure img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:40% 50%}
-.hero figcaption,.cap{margin-top:14px;font:italic 400 17px/1.4 var(--serif);color:var(--ink-2)}
+.hero-note p{color:var(--ink-2);max-width:40ch}
+.hero-note .link{display:inline-block;margin-top:26px}
+.hero-note .meta{margin-top:18px;font-size:14px}
+.cap{margin-top:14px;font:italic 400 17px/1.4 var(--serif);color:var(--ink-2)}
 
 /* строка ассортимента: тихая, без движения */
 .assort{padding:clamp(72px,9vw,128px) 0 0;text-align:center;font:italic 400 clamp(22px,2.4vw,34px)/1.4 var(--serif);color:var(--ink-2)}
 
-/* меню */
+/* меню: журнальный разворот */
 .sec{padding-top:var(--sect)}
-.sec-h{display:grid;grid-template-columns:5fr 7fr;gap:clamp(32px,5vw,88px);align-items:end;margin-bottom:clamp(40px,5vw,72px)}
-.sec-h h2{font-size:clamp(40px,4.8vw,76px);line-height:1.02}
-.menu{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,2.6vw,40px)}
-.item img{width:100%;aspect-ratio:3/4;object-fit:cover;background:var(--stone);transition:transform 1.2s var(--ease)}
+.spread{display:grid;grid-template-columns:repeat(12,1fr);column-gap:clamp(16px,2vw,32px);row-gap:clamp(40px,5vw,80px);align-items:start}
+.sp-h{grid-column:1/6;grid-row:1}.sp-h h2{font-size:clamp(40px,4.8vw,76px);line-height:1.02;margin-bottom:18px}
+.item.big{grid-column:1/8;grid-row:2/4}.item.side{grid-column:9/13;grid-row:1/3;margin-top:clamp(40px,6vw,120px)}
+.list{grid-column:9/13;grid-row:3;list-style:none;padding:0;display:grid;gap:clamp(28px,3vw,44px);align-self:end}
+.item img{width:100%;object-fit:cover;background:var(--stone)}
+.item.big img{aspect-ratio:4/5}.item.side img{aspect-ratio:1}
 .item .ph{overflow:hidden;margin-bottom:22px}
-.item:hover img{transform:scale(1.03)}
-.item h3{font-size:clamp(26px,2.2vw,32px);line-height:1.1}
-.item p{color:var(--ink-2);font-size:15px;margin:8px 0 18px;line-height:1.5}
-.buy{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
-.buy b{font:400 24px/1 var(--serif);font-variant-numeric:lining-nums tabular-nums}
+.item h3{font-size:clamp(28px,2.6vw,40px);line-height:1.08}
+.item p,.list p{color:var(--ink-2);font-size:15px;margin:8px 0 16px;line-height:1.5;max-width:36ch}
+.buy{display:flex;align-items:baseline;gap:28px}
+.buy b,.list b{font:400 26px/1 var(--serif);font-variant-numeric:lining-nums tabular-nums}
+.list li{display:grid;grid-template-columns:1fr auto;column-gap:16px;align-items:baseline}
+.list h3{font-size:clamp(26px,2.2vw,32px);line-height:1.1}.list p{grid-column:1/-1;margin:6px 0 4px}.list .add{grid-column:1;justify-self:start}
 .add{font:500 15px/1 var(--sans);border-bottom:1px solid currentColor;padding:14px 0 4px;min-height:44px;transition:color .3s}
 .add:hover{color:var(--kraft-ink)}
 .add[data-count]::after{content:" · " attr(data-count)}
@@ -83,7 +87,7 @@ header nav a:hover::after{transform:scaleX(1)}
 .facts{list-style:none;padding:0;display:grid;gap:clamp(32px,4vw,56px)}
 .facts b{display:block;font:400 clamp(56px,6vw,96px)/.95 var(--serif);font-variant-numeric:lining-nums}
 .facts p{color:var(--ink-2);max-width:28ch;margin-top:10px}
-.workshop{position:relative;margin-top:var(--sect)}
+.workshop{position:relative;margin:var(--sect) 0 clamp(40px,5vw,80px)}
 .workshop>img{width:100%;aspect-ratio:21/9;object-fit:cover}
 .inset{position:absolute;right:var(--g);bottom:calc(-1 * clamp(40px,5vw,80px));width:clamp(220px,24vw,340px);background:var(--paper);padding:10px 10px 14px}
 .inset video{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:var(--stone)}
@@ -91,11 +95,15 @@ header nav a:hover::after{transform:scaleX(1)}
 .inset .row span{font:italic 400 16px/1.3 var(--serif);color:var(--ink-2)}
 .vt{min-width:44px;min-height:44px;font:500 14px/1 var(--sans);border-bottom:1px solid currentColor;padding:14px 0 4px}
 
-/* отзывы */
-.revs{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(32px,5vw,88px)}
-.revs blockquote p{font:italic 400 clamp(22px,2vw,28px)/1.35 var(--serif)}
-.revs figcaption{margin-top:20px;font-size:15px;color:var(--ink-2)}.revs figcaption b{color:var(--ink);font-weight:500}
-.stars{display:flex;gap:4px;margin-bottom:18px;color:var(--kraft-ink)}.stars svg{width:16px;height:16px}
+/* отзывы: одна большая цитата + две тихие */
+.quote{text-align:center}
+.quote h2{font:400 18px/1.4 var(--sans);color:var(--ink-2);margin-bottom:clamp(28px,3vw,44px)}
+.pull{max-width:22ch;margin:0 auto}.pull p{font:400 clamp(36px,4.6vw,72px)/1.12 var(--serif);text-wrap:balance}
+.pull figcaption,.more figcaption{margin-top:24px;font-size:15px;color:var(--ink-2)}.pull figcaption b,.more figcaption b{color:var(--ink);font-weight:500}
+.stars{display:flex;justify-content:center;gap:4px;margin-bottom:24px;color:var(--kraft-ink)}.stars svg{width:16px;height:16px}
+.more{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,112px);max-width:980px;margin:clamp(64px,8vw,120px) auto 0;text-align:left}
+.more p{font:italic 400 clamp(20px,1.7vw,24px)/1.4 var(--serif)}
+.narrow{max-width:1100px}
 
 /* заказ: крафтовый лист */
 .order{background:var(--kraft);margin-top:var(--sect);padding:var(--sect) 0}
@@ -143,17 +151,18 @@ form .btn{width:100%;margin-top:6px}
 /* единственное движение: фото мягко проявляются */
 .js .fade{opacity:0;transition:opacity 1.4s var(--ease)}.js .fade.in{opacity:1}
 
-@media(max-width:1000px){.menu{grid-template-columns:repeat(2,1fr)}.revs{grid-template-columns:1fr;max-width:640px}}
+@media(max-width:1000px){.sp-h{grid-column:1/-1}.item.big{grid-column:1/8;grid-row:2/4}.item.side{grid-column:8/13;grid-row:2;margin-top:0}.list{grid-column:8/13;grid-row:3}}
 @media(max-width:860px){
  .hd{grid-template-columns:1fr auto;height:72px}.brand svg{width:42px;height:42px}.brand b{font-size:26px}
  header nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--paper);padding:8px var(--g) 24px}header nav.open{display:flex}header nav a{font-size:20px;font-family:var(--serif)}
  .burger{display:grid}.cart .cart-l{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
- .hero{grid-template-columns:1fr;gap:28px}.hero figure{order:-1;margin:0 calc(-1 * var(--g))}.hero figure img{aspect-ratio:4/3}.hero figcaption{padding:0 var(--g)}
+ .hero{height:auto;min-height:0}.hero-img{position:relative;aspect-ratio:4/5;height:auto}.hero-note{position:relative;padding:28px var(--g) 0;max-width:none}
+ .spread{display:flex;flex-direction:column;gap:48px}.item.side{margin-top:0}.more{grid-template-columns:1fr}
  .sec-h,.why,.order .in{grid-template-columns:1fr}
  .workshop>img{aspect-ratio:4/3}.inset{position:relative;right:auto;bottom:auto;width:62%;margin:-80px 0 0 auto}
  .ft{grid-template-columns:1fr}
 }
-@media(max-width:520px){.menu{gap:28px 16px}.item h3{font-size:22px}.buy{flex-direction:column;align-items:flex-start;gap:4px}}
+@media(max-width:520px){.buy{gap:20px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .fade{opacity:1;transition:none}.item img,.drawer,.scrim{transition:none;animation:none}.item:hover img{transform:none}}
 </style></head><body><a class="skip-link" href="#main">Перейти к содержанию</a>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -170,26 +179,26 @@ form .btn{width:100%;margin-top:6px}
  <button class="burger" aria-label="Открыть меню" aria-expanded="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></button></div>
 </div></header>
 
-<main id="main"><div class="wrap">
+<main id="main">
 <section class="hero" aria-labelledby="h1">
- <div><h1 id="h1">Тёплый хлеб <em>к&nbsp;завтраку</em></h1>
-  <p class="lede">Печём на&nbsp;закваске без улучшителей, из&nbsp;печи каждые два часа, и&nbsp;привозим за&nbsp;30&nbsp;минут. Первая доставка&nbsp;— бесплатно.</p>
-  <div class="acts"><a class="btn" href="#menu">Заказать выпечку</a><a class="link" href="#why">О&nbsp;пекарне</a></div>
-  <p class="meta">Ежедневно 6:30–22:00</p></div>
- <figure><img src="img/v2/hero.webp" width="2000" height="1333" alt="Хлеб на закваске и круассаны на льняной ткани и крафтовой бумаге в утреннем свете" fetchpriority="high"><figcaption>Утренняя партия: хлеб на&nbsp;закваске и&nbsp;круассаны.</figcaption></figure>
+ <img class="hero-img" src="img/v2/oven.webp" width="1800" height="1200" alt="Полки с хлебом на закваске и подовая печь в утренней пекарне" fetchpriority="high">
+ <div class="hero-note"><h1 id="h1">Тёплый хлеб <em>к&nbsp;завтраку</em></h1>
+  <p>Печём на&nbsp;закваске без улучшителей, из&nbsp;печи каждые два часа, и&nbsp;привозим за&nbsp;30&nbsp;минут. Первая доставка&nbsp;— бесплатно.</p>
+  <a class="link" href="#menu">Заказать выпечку&nbsp;→</a><p class="meta">Ежедневно 6:30–22:00</p></div>
 </section>
 
+<div class="wrap">
 <p class="assort">Круассаны · Багеты · Синнабоны · Хлеб на&nbsp;закваске · Брецели</p>
 
-<section class="sec" id="menu" aria-labelledby="menu-h">
- <div class="sec-h"><h2 id="menu-h">Сегодня в&nbsp;печи</h2><p class="lede">Свежая партия каждые два часа. Бесплатная доставка от&nbsp;700&nbsp;₽.</p></div>
- <div class="menu">
-  <article class="item"><div class="ph"><img class="fade" src="img/v2/croissant.webp" width="1100" height="1467" loading="lazy" alt="Круассан с хрустящими слоями на крафтовой бумаге"></div><h3>Круассан</h3><p>Французское масло 82%, 27&nbsp;слоёв</p><div class="buy"><b>149&nbsp;₽</b><button class="add" data-id="croissant" data-name="Круассан" data-price="149">В&nbsp;корзину</button></div></article>
-  <article class="item"><div class="ph"><img class="fade" src="img/v2/bread.webp" width="900" height="900" loading="lazy" alt="Хлеб на закваске с глубоким надрезом на льняной ткани"></div><h3>Хлеб на&nbsp;закваске</h3><p>Пшеничная закваска, 36&nbsp;часов ферментации</p><div class="buy"><b>290&nbsp;₽</b><button class="add" data-id="bread" data-name="Хлеб на закваске" data-price="290">В&nbsp;корзину</button></div></article>
-  <article class="item"><div class="ph"><img class="fade" src="img/v2/cinnabon.webp" width="900" height="1200" loading="lazy" alt="Синнабон со сливочной глазурью на крафтовой бумаге"></div><h3>Синнабон</h3><p>Корица, сливочный сыр и&nbsp;много любви</p><div class="buy"><b>210&nbsp;₽</b><button class="add" data-id="cinnabon" data-name="Синнабон" data-price="210">В&nbsp;корзину</button></div></article>
-  <article class="item"><div class="ph"><img class="fade" src="img/v2/pretzel.webp" width="900" height="1200" loading="lazy" alt="Брецель с крупной солью на крафтовой бумаге"></div><h3>Брецель</h3><p>Хрустящая корочка и&nbsp;крупная соль</p><div class="buy"><b>120&nbsp;₽</b><button class="add" data-id="pretzel" data-name="Брецель" data-price="120">В&nbsp;корзину</button></div></article>
- </div>
-</section>
+<section class="sec" id="menu" aria-labelledby="menu-h"><div class="spread">
+ <header class="sp-h"><h2 id="menu-h">Сегодня в&nbsp;печи</h2><p class="lede">Свежая партия каждые два часа. Бесплатная доставка от&nbsp;700&nbsp;₽.</p></header>
+ <article class="item big"><div class="ph"><img class="fade" src="img/v2/croissant.webp" width="1100" height="1467" loading="lazy" alt="Круассан с хрустящими слоями на крафтовой бумаге"></div><h3>Круассан</h3><p>Французское масло 82%, 27&nbsp;слоёв</p><div class="buy"><b>149&nbsp;₽</b><button class="add" data-id="croissant" data-name="Круассан" data-price="149">В&nbsp;корзину</button></div></article>
+ <article class="item side"><div class="ph"><img class="fade" src="img/v2/bread.webp" width="900" height="900" loading="lazy" alt="Хлеб на закваске с глубоким надрезом на льняной ткани"></div><h3>Хлеб на&nbsp;закваске</h3><p>Пшеничная закваска, 36&nbsp;часов ферментации</p><div class="buy"><b>290&nbsp;₽</b><button class="add" data-id="bread" data-name="Хлеб на закваске" data-price="290">В&nbsp;корзину</button></div></article>
+ <ul class="list" aria-label="Ещё в печи">
+  <li><h3>Синнабон</h3><b>210&nbsp;₽</b><p>Корица, сливочный сыр и&nbsp;много любви</p><button class="add" data-id="cinnabon" data-name="Синнабон" data-price="210">В&nbsp;корзину</button></li>
+  <li><h3>Брецель</h3><b>120&nbsp;₽</b><p>Хрустящая корочка и&nbsp;крупная соль</p><button class="add" data-id="pretzel" data-name="Брецель" data-price="120">В&nbsp;корзину</button></li>
+ </ul>
+</div></section>
 
 <section class="sec" id="why" aria-labelledby="why-h">
  <div class="why">
@@ -201,20 +210,21 @@ form .btn{width:100%;margin-top:6px}
     <li><b>6:30</b><p>Первая партия уже готова к&nbsp;вашему завтраку</p></li>
    </ul></div>
  </div>
- <div class="workshop"><img class="fade" src="img/v2/oven.webp" width="1800" height="1200" loading="lazy" alt="Полки с хлебом на закваске и подовая печь в пекарне">
-  <figure class="inset"><video id="vid" muted loop playsinline preload="none" poster="baker.jpg" aria-label="Пекарь достаёт хлеб из печи"><source src="media/baker.mp4" type="video/mp4"></video><div class="row"><span>Утро в&nbsp;цехе</span><button class="vt" id="vt" type="button" hidden>Пауза</button></div></figure>
- </div>
-</section>
-
-<section class="sec" id="reviews" aria-labelledby="rev-h">
- <div class="sec-h"><h2 id="rev-h">Нас любят</h2></div>
- <div class="revs">
-  <figure><div class="stars" role="img" aria-label="Оценка 5 из 5"><svg aria-hidden="true"><use href="#star"/></svg><svg aria-hidden="true"><use href="#star"/></svg><svg aria-hidden="true"><use href="#star"/></svg><svg aria-hidden="true"><use href="#star"/></svg><svg aria-hidden="true"><use href="#star"/></svg></div><blockquote><p>«Круассаны как в&nbsp;Париже, только приезжают ещё тёплыми. Теперь это наш воскресный ритуал».</p></blockquote><figcaption><b>Аня</b>, Хамовники</figcaption></figure>
-  <figure><div class="stars" role="img" aria-label="Оценка 5 из 5"><svg aria-hidden="true"><use href="#star"/></svg><svg aria-hidden="true"><use href="#star"/></svg><svg aria-hidden="true"><use href="#star"/></svg><svg aria-hidden="true"><use href="#star"/></svg><svg aria-hidden="true"><use href="#star"/></svg></div><blockquote><p>«Хлеб на&nbsp;закваске стоит несколько дней и&nbsp;не&nbsp;черствеет. Дети просят синнабоны каждый день».</p></blockquote><figcaption><b>Дмитрий</b>, Сокол</figcaption></figure>
-  <figure><div class="stars" role="img" aria-label="Оценка 5 из 5"><svg aria-hidden="true"><use href="#star"/></svg><svg aria-hidden="true"><use href="#star"/></svg><svg aria-hidden="true"><use href="#star"/></svg><svg aria-hidden="true"><use href="#star"/></svg><svg aria-hidden="true"><use href="#star"/></svg></div><blockquote><p>«Заказываем выпечку в&nbsp;офис на&nbsp;планёрки. Всегда вовремя и&nbsp;всегда тёплая».</p></blockquote><figcaption><b>Команда «Облако»</b>, офис на&nbsp;Белорусской</figcaption></figure>
- </div>
 </section>
 </div>
+
+<div class="workshop"><img class="fade" src="img/v2/hero.webp" width="2000" height="1333" loading="lazy" alt="Хлеб на закваске и круассаны на льняной ткани и крафтовой бумаге в утреннем свете">
+ <figure class="inset"><video id="vid" muted loop playsinline preload="none" poster="baker.jpg" aria-label="Пекарь достаёт хлеб из печи"><source src="media/baker.mp4" type="video/mp4"></video><div class="row"><span>Утро в&nbsp;цехе</span><button class="vt" id="vt" type="button" hidden>Пауза</button></div></figure>
+</div>
+
+<section class="sec quote" id="reviews" aria-labelledby="rev-h"><div class="wrap narrow">
+ <h2 id="rev-h">Нас любят</h2>
+ <figure class="pull"><div class="stars" role="img" aria-label="Оценка 5 из 5"><svg aria-hidden="true"><use href="#star"/></svg><svg aria-hidden="true"><use href="#star"/></svg><svg aria-hidden="true"><use href="#star"/></svg><svg aria-hidden="true"><use href="#star"/></svg><svg aria-hidden="true"><use href="#star"/></svg></div><blockquote><p>«Круассаны как в&nbsp;Париже, только приезжают ещё тёплыми».</p></blockquote><figcaption><b>Аня</b>, Хамовники: «Теперь это наш воскресный ритуал».</figcaption></figure>
+ <div class="more">
+  <figure><blockquote><p>«Хлеб на&nbsp;закваске стоит несколько дней и&nbsp;не&nbsp;черствеет. Дети просят синнабоны каждый день».</p></blockquote><figcaption><b>Дмитрий</b>, Сокол · оценка 5 из 5</figcaption></figure>
+  <figure><blockquote><p>«Заказываем выпечку в&nbsp;офис на&nbsp;планёрки. Всегда вовремя и&nbsp;всегда тёплая».</p></blockquote><figcaption><b>Команда «Облако»</b>, офис на&nbsp;Белорусской · оценка 5 из 5</figcaption></figure>
+ </div>
+</div></section>
 
 <section class="order" id="order" aria-labelledby="order-h"><div class="wrap in">
  <figure><img class="fade" src="img/v2/bag.webp" width="1100" height="1467" loading="lazy" alt="Крафтовый пакет с багетом и штампом пекарни на каменной столешнице"></figure>
