@@ -1,0 +1,143 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Булка — B · Подъём</title><meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&family=Golos+Text:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* B · «Подъём» — кинетический плакат. Материал: тесто. Шрифт расстаётся, как опара. */
+:root{
+ --dough:#fff0d4;--char:#1c120b;--oven:#e8380c;--oven-t:#c92d07;--yolk:#ffc233;--crumb:#5c4535;
+ --disp:Unbounded,"Arial Black",sans-serif;--text:"Golos Text",system-ui,sans-serif;
+ --g:clamp(16px,3vw,40px);--ease:cubic-bezier(.16,1,.3,1);--spring:cubic-bezier(.34,1.56,.64,1);
+}
+*{margin:0;box-sizing:border-box}
+body{background:var(--dough);color:var(--char);font:400 17px/1.55 var(--text);-webkit-font-smoothing:antialiased}
+::selection{background:var(--yolk);color:var(--char)}
+a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}
+ body.dark header{color:var(--dough)}body.dark header nav a:hover{color:var(--char)}
+:focus-visible{outline:3px solid var(--char);outline-offset:3px}
+
+header{position:fixed;inset:0 0 auto;z-index:20;transition:color .3s;display:flex;justify-content:space-between;align-items:center;padding:18px var(--g)}
+.logo{font:900 26px/1 var(--disp);letter-spacing:-.03em}
+header nav{display:flex;gap:6px;font:600 14px/1 var(--disp);text-transform:uppercase;letter-spacing:.02em}
+header nav a{padding:12px 14px;border-radius:999px;transition:background .25s}header nav a:hover{background:var(--yolk)}
+.cart{display:flex;align-items:center;gap:10px;background:var(--char);color:var(--dough);border:0;border-radius:999px;padding:8px 8px 8px 18px;font:700 14px/1 var(--disp);text-transform:uppercase;min-height:44px}
+.cart b{display:grid;place-items:center;min-width:30px;height:30px;border-radius:50%;background:var(--oven);color:var(--char)}
+
+/* hero: гигантское слово, сквозь буквы видно цех (видео под слоем lighten) */
+.hero{position:relative;min-height:100svh;display:grid;grid-template-rows:1fr auto;padding:96px 0 28px;overflow:hidden}
+.word-wrap{position:relative;align-self:center;isolation:isolate}
+.word-wrap video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;filter:brightness(.62) contrast(1.15) saturate(1.1)}
+.word{position:relative;z-index:1;background:var(--dough);mix-blend-mode:lighten;display:flex;justify-content:center;
+ font:200 clamp(80px,19.6vw,340px)/.82 var(--disp);letter-spacing:-.05em;white-space:nowrap;text-transform:uppercase;color:#000;padding:.04em 0 .07em;user-select:none}
+.word span{display:inline-block;font-variation-settings:"wght" var(--w,200);transform-origin:50% 100%;transform:scaleY(var(--s,1));transition:font-variation-settings .9s var(--ease),transform .9s var(--spring)}
+.word.risen span{--w:900}
+.sub{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:24px;padding:0 var(--g)}
+.sub p{font-size:clamp(16px,1.3vw,19px);max-width:32ch;font-weight:500}
+.sub p b{color:var(--oven-t)}
+.go{justify-self:center;display:inline-flex;align-items:center;gap:14px;background:var(--oven);color:var(--char);font:800 clamp(16px,1.4vw,20px)/1 var(--disp);text-transform:uppercase;padding:22px 30px;border-radius:999px;transition:transform .4s var(--spring)}
+.go:hover{transform:scale(1.06) rotate(-2deg)}
+.go svg{transition:transform .4s var(--spring)}.go:hover svg{transform:translateX(5px)}
+.stamp{justify-self:end;text-align:right;font:700 13px/1.4 var(--disp);text-transform:uppercase}
+.stamp em{display:block;font-style:normal;font-size:clamp(28px,3vw,44px);line-height:1;color:var(--oven-t)}
+.croissant{position:absolute;z-index:3;width:clamp(300px,30vw,480px);aspect-ratio:1;right:3vw;top:58%;translate:0 -50%;--poster-color:transparent;--progress-bar-height:0;background:transparent;pointer-events:auto}
+.croissant-ph{position:absolute;z-index:3;width:clamp(200px,22vw,360px);aspect-ratio:1;right:10vw;top:50%;translate:0 -46%;border-radius:50%;background:url(../croissant.jpg) center/118%;border:4px solid var(--char);rotate:-8deg}
+
+/* конвейер меню: вертикальный скролл → горизонтальное движение */
+.belt{position:relative;background:var(--char);color:var(--dough)}
+.belt .pin{position:sticky;top:0;height:100svh;overflow:hidden;display:grid;grid-template-rows:auto 1fr;padding:96px 0 40px}
+.belt-h{display:flex;justify-content:space-between;align-items:end;padding:0 var(--g) 28px}
+.belt h2{font:900 clamp(44px,6.5vw,110px)/.9 var(--disp);letter-spacing:-.04em;text-transform:uppercase}
+.belt h2 span{color:var(--yolk)}
+.belt-h p{max-width:30ch;color:#e6d6bd}
+.track{display:flex;gap:24px;padding:0 var(--g);will-change:transform;align-items:stretch}
+.prod{flex:0 0 clamp(300px,34vw,520px);border-radius:36px;padding:28px;display:grid;grid-template-rows:auto 1fr auto;color:var(--char);position:relative;overflow:hidden}
+.prod:nth-child(1){background:var(--yolk)}.prod:nth-child(2){background:var(--dough)}.prod:nth-child(3){background:#ff9a7a}.prod:nth-child(4){background:#b9e3c6}
+.prod h3{font:900 clamp(34px,3.4vw,58px)/.92 var(--disp);letter-spacing:-.04em;text-transform:uppercase}
+.prod .ph{margin:18px 0;border-radius:24px;background:center/cover;min-height:0;transition:transform .6s var(--spring)}
+.prod:hover .ph{transform:rotate(-2deg) scale(1.02)}
+.prod .row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.prod .row p{font-size:15px;font-weight:500;max-width:22ch}
+.prod .pr{font:900 clamp(28px,2.6vw,40px)/1 var(--disp);letter-spacing:-.03em}
+.add{width:64px;height:64px;flex:none;border-radius:50%;border:0;background:var(--char);color:var(--dough);display:grid;place-items:center;transition:transform .35s var(--spring)}
+.add:hover{transform:scale(1.1) rotate(90deg)}.add:active{transform:scale(.92)}
+.add[data-n]{background:var(--oven);color:var(--char)}
+.add[data-n]::after{content:attr(data-n);position:absolute;font:900 22px/1 var(--disp)}.add[data-n] svg{display:none}
+.end{flex:0 0 clamp(280px,28vw,420px);display:grid;place-content:center;gap:18px;text-align:left}
+.end strong{font:900 clamp(30px,3vw,48px)/.95 var(--disp);text-transform:uppercase;letter-spacing:-.03em;color:var(--yolk)}
+
+@media(max-width:860px){
+ header nav{display:none}
+ .hero{padding-top:84px}
+ .word{flex-direction:column;align-items:flex-start;font-size:44vw;line-height:.8;padding:0 var(--g) .05em}
+ .word .br{display:block}
+ .sub{grid-template-columns:1fr;gap:20px}.go{justify-self:start}.stamp{justify-self:start;text-align:left}
+ .croissant-ph{width:42vw;right:var(--g);top:auto;bottom:40%;translate:0 0}
+ .belt{height:auto!important}.belt .pin{position:relative;height:auto;padding:72px 0 56px}
+ .belt-h{display:block}.belt-h p{margin-top:12px}
+ .track{transform:none!important;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px;scrollbar-width:none}
+ .prod{flex-basis:82vw;scroll-snap-align:center;min-height:470px}.end{display:none}
+}
+@media(prefers-reduced-motion:reduce){.word span{transition:none;--w:900}.go,.add,.prod .ph{transition:none}}
+</style></head><body>
+<header><a class="logo" href="#">Булка!</a><nav aria-label="Разделы"><a href="#menu">Меню</a><a href="#">Цех</a><a href="#">Доставка</a></nav><button class="cart" aria-label="Корзина, товаров: 0">Корзина <b id="n">0</b></button></header>
+<main>
+<section class="hero">
+ <div class="word-wrap">
+  <video muted loop playsinline autoplay preload="metadata" poster="../baker.jpg" aria-hidden="true"><source src="../media/baker.mp4" type="video/mp4"></video>
+  <h1 class="word" id="word" aria-label="Булка"><span class="br-wrap"><span>Б</span><span>У</span><span>Л</span></span><span class="br"></span><span class="br-wrap"><span>К</span><span>А</span></span></h1>
+  <div class="croissant-ph" id="cph" aria-hidden="true"></div>
+ </div>
+ <div class="sub">
+  <p>Тесто поднимается 36&nbsp;часов, а&nbsp;к&nbsp;вам едет <b>30&nbsp;минут</b>. Хлеб на&nbsp;закваске, круассаны и&nbsp;синнабоны&nbsp;— из&nbsp;печи каждые 2&nbsp;часа.</p>
+  <a class="go" href="#menu">Хочу тёплое <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  <p class="stamp">Первая доставка<em>бесплатно</em></p>
+ </div>
+</section>
+
+<section class="belt" id="menu"><div class="pin">
+ <div class="belt-h"><h2>Сегодня <span>на&nbsp;ленте</span></h2><p>Листайте вниз&nbsp;— лента едет сама. Нажмите «+», и&nbsp;булка ваша.</p></div>
+ <div class="track" id="track">
+  <article class="prod"><h3>Круас&shy;сан</h3><div class="ph" style="background-image:url(../croissant.jpg)"></div><div class="row"><div><span class="pr">149&nbsp;₽</span><p>Масло 82%, 27&nbsp;слоёв</p></div><button class="add" aria-label="Добавить круассан"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button></div></article>
+  <article class="prod"><h3>Хлеб на&nbsp;закваске</h3><div class="ph" style="background-image:url(../bread.jpg)"></div><div class="row"><div><span class="pr">290&nbsp;₽</span><p>36&nbsp;часов ферментации</p></div><button class="add" aria-label="Добавить хлеб на закваске"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button></div></article>
+  <article class="prod"><h3>Синна&shy;бон</h3><div class="ph" style="background-image:url(../cinnabon.jpg)"></div><div class="row"><div><span class="pr">210&nbsp;₽</span><p>Корица и&nbsp;сливочный сыр</p></div><button class="add" aria-label="Добавить синнабон"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button></div></article>
+  <article class="prod"><h3>Брецель</h3><div class="ph" style="background-image:url(../pretzel.jpg)"></div><div class="row"><div><span class="pr">120&nbsp;₽</span><p>Хрусткая корка, крупная соль</p></div><button class="add" aria-label="Добавить брецель"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button></div></article>
+  <div class="end"><strong>Следующая партия через&nbsp;2&nbsp;часа</strong><a class="go" href="#">Оформить заказ</a></div>
+ </div>
+</div></section>
+</main>
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches, wide = matchMedia('(min-width: 861px)').matches;
+  const word = document.getElementById('word'), letters = [...word.querySelectorAll('span:not(.br):not(.br-wrap)')];
+  // сигнатура: слово «поднимается» — вес 200 → 900 по буквам, как опара
+  letters.forEach((l, i) => l.style.transitionDelay = (reduce ? 0 : 200 + i * 110) + 'ms');
+  requestAnimationFrame(() => requestAnimationFrame(() => word.classList.add('risen')));
+  // курсор «надувает» ближайшие буквы
+  if (!reduce && matchMedia('(hover:hover) and (pointer:fine)').matches) {
+    let raf = 0, mx = -1e4, my = -1e4;
+    const tick = () => { raf = 0; letters.forEach(l => { const r = l.getBoundingClientRect(), d = Math.hypot(mx - (r.left + r.width / 2), my - (r.top + r.height / 2)), k = Math.max(0, 1 - d / 420);
+      l.style.transitionDelay = '0ms'; l.style.setProperty('--w', Math.round(900 - k * 620)); l.style.setProperty('--s', (1 + k * .08).toFixed(3)); }); };
+    word.parentElement.addEventListener('pointermove', e => { mx = e.clientX; my = e.clientY; raf ||= requestAnimationFrame(tick); });
+    word.parentElement.addEventListener('pointerleave', () => { letters.forEach(l => { l.style.removeProperty('--w'); l.style.removeProperty('--s'); }); });
+  }
+  // конвейер: высота секции = длина ленты
+  const belt = document.getElementById('menu'), track = document.getElementById('track');
+  if (wide) {
+    const size = () => { belt.style.height = (track.scrollWidth - innerWidth + innerHeight * 1.15) + 'px'; };
+    let raf = 0; const tick = () => { raf = 0; const r = belt.getBoundingClientRect(), span = belt.offsetHeight - innerHeight, t = Math.min(1, Math.max(0, -r.top / span));
+      track.style.transform = `translateX(${-t * (track.scrollWidth - innerWidth + 0)}px)`; document.body.classList.toggle("dark", r.top <= 40 && r.bottom > 60); };
+    size(); addEventListener('resize', size); addEventListener('scroll', () => raf ||= requestAnimationFrame(tick), { passive: true }); tick();
+  }
+  let n = 0; document.querySelectorAll('.add').forEach(b => b.addEventListener('click', () => { b.dataset.n = (+b.dataset.n || 0) + 1; document.getElementById('n').textContent = ++n; }));
+  // 3D-круассан поверх слова (десктоп)
+  if (wide) addEventListener('load', () => setTimeout(() => {
+    const mv = document.createElement('model-viewer'); mv.className = 'croissant';
+    Object.entries({ src: '../media/croissant.glb', 'camera-controls': '', 'disable-zoom': '', 'disable-pan': '', 'interaction-prompt': 'none', 'camera-orbit': '40deg 65deg 0.36m', 'min-camera-orbit': 'auto auto 0.2m', 'field-of-view': '30deg', 'rotation-per-second': '30deg', exposure: '1.1', 'shadow-intensity': '1', 'aria-label': 'Круассан, 3D', 'tabindex': '-1' }).forEach(([k, v]) => mv.setAttribute(k, v));
+    if (!reduce) mv.setAttribute('auto-rotate', '');
+    mv.style.opacity = 0; mv.addEventListener('load', () => { document.getElementById('cph').remove(); mv.style.transition = 'opacity .6s'; mv.style.opacity = 1; }, { once: true });
+    document.querySelector('.word-wrap').append(mv);
+    import('https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js').catch(() => mv.remove());
+  }, 300), { once: true });
+})();
+</script>
+</body></html>
