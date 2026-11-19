@@ -26,6 +26,8 @@ h2{font-family:Rubik,"Arial Black",sans-serif;font-weight:900;font-size:clamp(38
 .c{position:absolute;border-radius:50%;border:4px solid var(--ink);display:grid;place-items:center;font-size:90px;box-shadow:8px 8px 0 var(--ink);animation:float 5s ease-in-out infinite}
 .c1{width:340px;height:340px;background:var(--butter);left:0;top:50px;font-size:150px}.c2{width:170px;height:170px;background:var(--mint);right:20px;top:-10px;animation-delay:-1.5s}.c3{width:190px;height:190px;background:var(--pink);right:20px;bottom:-30px;animation-delay:-3s}
 @keyframes float{50%{transform:translateY(-14px) rotate(4deg)}}
+.c1 model-viewer{position:absolute;inset:0;width:100%;height:100%;border-radius:50%;background:transparent;--poster-color:transparent;--progress-bar-height:0;opacity:0;transition:opacity .6s;cursor:grab;touch-action:pan-y}.c1 model-viewer:active{cursor:grabbing}
+.c1.is-3d{background:radial-gradient(circle at 40% 35%,#fff9ec,var(--butter))!important}.c1.is-3d model-viewer{opacity:1}
 .tick{background:var(--ink);color:var(--butter);font-family:Rubik,"Arial Black",sans-serif;font-weight:800;font-size:28px;padding:18px 0;white-space:nowrap;overflow:hidden;text-transform:uppercase}
 .tick div{display:inline-block;animation:run 22s linear infinite}@keyframes run{to{transform:translateX(-50%)}}
 section.blk{padding:90px 0}
@@ -35,7 +37,7 @@ section.blk{padding:90px 0}
 .card h3{font-family:Rubik,"Arial Black",sans-serif;font-size:22px}.card p{font-size:14px;opacity:.75;margin:6px 0 16px;flex:1}
 .buy{display:flex;justify-content:space-between;align-items:center}.buy b{color:#c23a17;font-size:22px;font-family:Rubik,"Arial Black",sans-serif}
 .add{width:46px;height:46px;border-radius:50%;border:3px solid var(--ink);background:var(--butter);color:var(--ink);cursor:pointer;display:grid;place-items:center;transition:transform .15s,background .2s}.add:hover{transform:scale(1.08)}.add:active{transform:scale(.94)}.add.done{background:var(--mint)}
-.why-wrap{display:grid;grid-template-columns:1fr 1fr;gap:22px}.baker{border:3px solid var(--ink);border-radius:26px;box-shadow:6px 6px 0 var(--ink);background:var(--paper) url(baker.jpg) center/cover;min-height:340px}.why{display:grid;grid-template-columns:1fr;gap:18px}
+.why-wrap{display:grid;grid-template-columns:1fr 1fr;gap:22px}.baker{border:3px solid var(--ink);border-radius:26px;box-shadow:6px 6px 0 var(--ink);background:var(--paper) url(baker.jpg) center/cover;min-height:340px;width:100%;height:100%;object-fit:cover;display:block}.why{display:grid;grid-template-columns:1fr;gap:18px}
 .w{border:3px solid var(--ink);border-radius:26px;padding:30px;background:var(--butter)}.w:nth-child(2){background:var(--mint)}.w:nth-child(3){background:var(--pink)}
 .w b{font-family:Rubik,"Arial Black",sans-serif;font-size:44px;display:block}.w p{font-weight:700;font-size:17px}
 .revs{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
@@ -107,7 +109,7 @@ footer{padding:40px 0;font-weight:700}.ft{display:flex;justify-content:space-bet
 </div></div></section>
 
 <section class="blk" id="why" style="padding-top:0"><div class="wrap"><h2 class="reveal">Почему <span style="color:#d9401c">Булка?</span></h2>
-<div class="why-wrap"><div class="baker" role="img" aria-label="Пекарь достаёт хлеб из печи"></div><div class="why">
+<div class="why-wrap"><video class="baker" muted loop playsinline preload="none" poster="baker.jpg" aria-label="Пекарь достаёт хлеб из печи"><source src="media/baker.mp4" type="video/mp4"></video><div class="why">
 <div class="w"><b>30 мин</b><p>Привозим горячим, пока хрустит корочка</p></div>
 <div class="w"><b>0</b><p>Улучшителей, консервантов и маргарина</p></div>
 <div class="w"><b>6:30</b><p>Первая партия уже готова к вашему завтраку</p></div>
@@ -246,6 +248,31 @@ footer{padding:40px 0;font-weight:700}.ft{display:flex;justify-content:space-bet
     }
   });
   document.addEventListener('click', e => { if (e.target.id === 'edit-cart') { e.preventDefault(); open(); } });
+
+  // видео пекаря: играет только в зоне видимости, при reduce — только постер
+  const vid = document.querySelector('video.baker');
+  if (vid && !reduce && 'IntersectionObserver' in window) {
+    new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { vid.preload = 'auto'; vid.play().catch(() => {}); } else vid.pause();
+    }, { threshold: 0.25 }).observe(vid);
+  }
+
+  // 3D-круассан в главном круге: только ≥600px и без Save-Data; модуль грузится после load, в простое
+  const c1 = document.querySelector('.hero .c1');
+  if (c1 && matchMedia('(min-width: 600px)').matches && !navigator.connection?.saveData) {
+    const boot = () => {
+      const mv = document.createElement('model-viewer');
+      Object.entries({ src: 'media/croissant.glb', 'camera-controls': '', 'disable-zoom': '', 'disable-pan': '', 'disable-tap': '',
+        'interaction-prompt': 'none', 'camera-orbit': '30deg 70deg auto', 'rotation-per-second': '18deg', 'shadow-intensity': '0',
+        exposure: '1.05', loading: 'eager', tabindex: '-1' }).forEach(([k, v]) => mv.setAttribute(k, v));
+      if (!reduce) mv.setAttribute('auto-rotate', '');
+      mv.addEventListener('load', () => c1.classList.add('is-3d'), { once: true });
+      c1.append(mv);
+      import('https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js').catch(() => mv.remove());
+    };
+    const idle = () => (window.requestIdleCallback || setTimeout)(boot, { timeout: 2000 });
+    document.readyState === 'complete' ? idle() : addEventListener('load', idle, { once: true });
+  }
 
   // после отправки заказа корзина очищается
   $('order-form').addEventListener('demo:sent', () => { cart = {}; render(); });
