@@ -2,11 +2,11 @@
 <title>Булка — булочная у дома с доставкой</title><meta name="description" content="Булочная «Булка»: хлеб на закваске, круассаны и выпечка из печи каждые 2 часа с 6:30. Доставка за 30 минут, первая — бесплатно.">
 <link rel="canonical" href="https://philippkasharov-bit.github.io/bulka-bakery/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='29' fill='%23f5f0e6' stroke='%231f2329' stroke-width='3'/><text x='32' y='43' font-family='Georgia,serif' font-size='32' text-anchor='middle' fill='%231f2329'>Б</text></svg>">
-<script>document.documentElement.classList.add('js')</script><meta name="theme-color" content="#f5f0e6">
+<script>document.documentElement.classList.add('js');if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('motion');addEventListener('DOMContentLoaded',()=>{const s=document.createElement('script');s.src='motion.js?v=1';document.head.append(s)})}</script><meta name="theme-color" content="#f5f0e6">
 <meta property="og:type" content="website"><meta property="og:locale" content="ru_RU"><meta property="og:site_name" content="Булка"><meta property="og:title" content="Булка — булочная у дома с доставкой"><meta property="og:description" content="Хлеб на закваске, круассаны и выпечка из печи каждые 2 часа. Доставка за 30 минут."><meta property="og:image" content="https://philippkasharov-bit.github.io/bulka-bakery/og.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Булка — тёплый хлеб к завтраку"><meta property="og:url" content="https://philippkasharov-bit.github.io/bulka-bakery/"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://philippkasharov-bit.github.io/bulka-bakery/og.jpg">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Bakery","name":"Булка","url":"https://philippkasharov-bit.github.io/bulka-bakery/","image":"https://philippkasharov-bit.github.io/bulka-bakery/og.jpg","description":"Хлеб на закваске, круассаны и выпечка из печи каждые 2 часа. Доставка за 30 минут.","servesCuisine":"Выпечка","priceRange":"₽","openingHours":"Mo-Su 06:30-22:00"}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="image" href="img/v2/oven.webp" fetchpriority="high">
+<link rel="preload" as="image" href="img/v2/oven.webp" imagesrcset="img/v2/oven-900.webp 900w, img/v2/oven.webp 1800w" imagesizes="100vw" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 /* Булка · шаг 2 — интерфейс «Булочная, 1910»: бумага, крафт, чернила; леттеринг из SVG, гравюрные метки. */
@@ -17,6 +17,13 @@
 }
 *{margin:0;box-sizing:border-box}[hidden]{display:none!important}
 html{overflow-x:clip;scroll-behavior:smooth;scroll-padding-top:96px;scrollbar-color:var(--ink-2) var(--paper)}
+/* шаг 3: движение (только .motion, т.е. без prefers-reduced-motion) */
+html.lenis{scroll-behavior:auto}
+.motion:not(.motion-off) .hero-img{transform:scale(1.06);transform-origin:50% 60%}
+.motion:not(.motion-off):not(.motion-ready) #h1{opacity:0}
+.mw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em;margin-bottom:-.1em}.mw>*{display:inline-block}
+.steam{position:absolute;left:50%;top:-4%;width:56px;height:56px;margin-left:-28px;fill:none;stroke:var(--ink-2);stroke-width:1.6;stroke-linecap:round;z-index:2;pointer-events:none}.steam path{opacity:0}
+.kw-host{position:relative}.kw{position:absolute;inset:0;z-index:3;background:var(--kraft) url(img/v2/pack/tex-kraft.webp) center/520px;transform-origin:right center;pointer-events:none}
 body{overflow-x:clip;background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
 ::selection{background:var(--kraft);color:var(--ink)}
 a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
@@ -57,7 +64,7 @@ header nav a:hover::after{transform:scaleX(1)}
 .burger{display:none;width:44px;height:44px;place-items:center}
 
 /* hero */
-.hero{position:relative;height:min(92svh,960px);min-height:560px}
+.hero{position:relative;height:min(92svh,960px);min-height:560px;overflow:hidden}
 .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 45%}
 .hero-note{position:absolute;left:0;bottom:0;background:var(--paper);padding:clamp(28px,3.4vw,52px) clamp(28px,4vw,64px) clamp(24px,3vw,44px) var(--g);max-width:min(600px,94vw)}
 .hero h1{font-size:clamp(38px,3.6vw,56px);line-height:1.04;margin-bottom:16px}
@@ -75,7 +82,7 @@ header nav a:hover::after{transform:scaleX(1)}
 .plate{position:relative;height:clamp(150px,15vw,220px);display:grid;place-items:end center;margin-bottom:40px}
 .plate::after{content:"";position:absolute;left:-12%;right:-12%;bottom:-10px;height:10px;background:linear-gradient(#c9b48e,#a88c62);border-radius:1px;box-shadow:0 10px 14px -8px #4a381f80}
 .plate img{position:relative;z-index:1;max-height:100%;width:auto;max-width:92%;object-fit:contain;filter:drop-shadow(0 8px 6px #3a2a1433);transition:transform .5s var(--ease),filter .5s var(--ease)}
-.prod:hover .plate img,.prod:focus-within .plate img{transform:translateY(-10px) rotate(-1.5deg);filter:drop-shadow(0 18px 14px #3a2a1440)}
+.prod:hover .plate img,.prod:focus-within .plate img{transform:translateY(-10px) rotate(-1.5deg) scale(1.04);filter:drop-shadow(0 18px 14px #3a2a1440)}
 .prod h3{font-size:clamp(26px,2.2vw,32px);line-height:1.1}
 .prod p{color:var(--ink-2);font-size:15px;margin:6px auto 14px;max-width:28ch;line-height:1.45}
 .prod .buy{display:flex;justify-content:center;align-items:baseline;gap:22px}
@@ -192,20 +199,20 @@ form .btn{width:100%;margin-top:6px}
 
 <main id="main">
 <section class="hero" aria-labelledby="h1">
- <img class="hero-img" src="img/v2/oven.webp" width="1800" height="1200" alt="Полки с хлебом на закваске и подовая печь в утренней пекарне" fetchpriority="high">
+ <img class="hero-img" src="img/v2/oven.webp" srcset="img/v2/oven-900.webp 900w, img/v2/oven.webp 1800w" sizes="100vw" width="1800" height="1200" alt="Полки с хлебом на закваске и подовая печь в утренней пекарне" fetchpriority="high">
  <div class="hero-note">
   <h1 id="h1">Тёплый хлеб <em>к&nbsp;завтраку</em></h1>
   <p class="lede">Печём на&nbsp;закваске без улучшителей, из&nbsp;печи каждые два часа, и&nbsp;привозим за&nbsp;30&nbsp;минут. Первая доставка&nbsp;— бесплатно.</p>
-  <div class="countdown" id="countdown"><img src="img/v2/pack/icon-clock-animated.svg" alt="" width="40" height="40"><div><b id="cd-main">Следующие круассаны скоро</b><small id="cd-sub">Партии каждые 2&nbsp;часа с&nbsp;6:30 до&nbsp;22:00</small></div></div>
+  <div class="countdown" id="countdown"><img src="img/v2/pack/icon-clock.svg" data-anim="img/v2/pack/icon-clock-animated.svg" alt="" width="40" height="40"><div><b id="cd-main">Следующие круассаны скоро</b><small id="cd-sub">Партии каждые 2&nbsp;часа с&nbsp;6:30 до&nbsp;22:00</small></div></div>
   <a class="link" href="#menu">Выбрать к&nbsp;завтраку&nbsp;→</a>
  </div>
 </section>
 
 <div class="wrap">
 <section class="sec" id="menu" aria-labelledby="menu-h">
- <div class="st"><img class="mark" src="img/v2/pack/icon-wheat-animated.svg" alt="" width="56" height="56"><h2 id="menu-h"><span class="sr">Меню</span><img src="brand/lettering/title-menu.svg" alt="" width="192" height="64"></h2></div>
+ <div class="st"><img class="mark" src="img/v2/pack/icon-wheat.svg" data-anim="img/v2/pack/icon-wheat-animated.svg" alt="" width="56" height="56"><h2 id="menu-h"><span class="sr">Меню</span><img src="brand/lettering/title-menu.svg" alt="" width="192" height="64"></h2></div>
  <div class="shelf-wrap">
-  <figure class="inset-v"><video class="loop" muted loop playsinline preload="none" poster="img/v2/pack/loop-croissant-poster.webp" aria-label="Слои круассана крупным планом"><source src="img/v2/pack/loop-croissant.mp4" type="video/mp4"></video><figcaption class="row"><span>27&nbsp;слоёв</span><button class="vt" type="button" hidden>Пауза</button></figcaption></figure>
+  <figure class="inset-v"><video class="loop" muted loop playsinline preload="none" data-poster="img/v2/pack/loop-croissant-poster.webp" aria-label="Слои круассана крупным планом"><source src="img/v2/pack/loop-croissant.mp4" type="video/mp4"></video><figcaption class="row"><span>27&nbsp;слоёв</span><button class="vt" type="button" hidden>Пауза</button></figcaption></figure>
   <p class="lede" style="margin-bottom:clamp(36px,4vw,56px)">Свежая партия каждые два часа. Бесплатная доставка от&nbsp;700&nbsp;₽.</p>
   <div class="shelf" id="shelf" tabindex="0" role="region" aria-label="Полка с выпечкой">
    <article class="prod"><div class="plate"><img src="img/v2/pack/cut-croissant.webp" width="900" height="900" loading="lazy" alt="Круассан"></div><h3>Круассан</h3><p>Французское масло 82%, 27&nbsp;слоёв</p><div class="buy"><b>149&nbsp;₽</b><button class="add" data-id="croissant" data-name="Круассан" data-price="149">В&nbsp;пакет</button></div></article>
@@ -220,10 +227,10 @@ form .btn{width:100%;margin-top:6px}
 </section>
 
 <section class="sec" id="bakery" aria-labelledby="bakery-h">
- <div class="st"><img class="mark" src="img/v2/pack/icon-oven-animated.svg" alt="" width="56" height="56"><h2 id="bakery-h"><span class="sr">Пекарня</span><img src="brand/lettering/title-bakery.svg" alt="" width="282" height="64"></h2></div>
+ <div class="st"><img class="mark" src="img/v2/pack/icon-oven.svg" data-anim="img/v2/pack/icon-oven-animated.svg" alt="" width="56" height="56"><h2 id="bakery-h"><span class="sr">Пекарня</span><img src="brand/lettering/title-bakery.svg" alt="" width="282" height="64"></h2></div>
  <div class="bakery">
   <figure><img src="img/v2/hands.webp" width="1100" height="1467" loading="lazy" alt="Руки пекаря формуют тесто на посыпанном мукой столе">
-   <div class="inset-v"><video class="loop" muted loop playsinline preload="none" poster="img/v2/pack/loop-flour-poster.webp" aria-label="Мучная пыль в утреннем свете"><source src="img/v2/pack/loop-flour.mp4" type="video/mp4"></video><div class="row"><span>Утро в&nbsp;цехе</span><button class="vt" type="button" hidden>Пауза</button></div></div>
+   <div class="inset-v"><video class="loop" muted loop playsinline preload="none" data-poster="img/v2/pack/loop-flour-poster.webp" aria-label="Мучная пыль в утреннем свете"><source src="img/v2/pack/loop-flour.mp4" type="video/mp4"></video><div class="row"><span>Утро в&nbsp;цехе</span><button class="vt" type="button" hidden>Пауза</button></div></div>
    <figcaption class="cap">Каждую булку формуют руками.</figcaption></figure>
   <div><h3 class="sr">Почему Булка?</h3>
    <ul class="facts">
@@ -247,7 +254,7 @@ form .btn{width:100%;margin-top:6px}
 
 <div class="wrap">
 <section class="sec" id="order" aria-labelledby="order-h">
- <div class="st"><img class="mark" src="img/v2/pack/icon-clock-animated.svg" alt="" width="56" height="56"><h2 id="order-h"><span class="sr">Доставка</span><img src="brand/lettering/title-delivery.svg" alt="" width="313" height="64"></h2></div>
+ <div class="st"><img class="mark" src="img/v2/pack/icon-clock.svg" data-anim="img/v2/pack/icon-clock-animated.svg" alt="" width="56" height="56"><h2 id="order-h"><span class="sr">Доставка</span><img src="brand/lettering/title-delivery.svg" alt="" width="313" height="64"></h2></div>
  <div class="deliv">
   <div class="scene"><img src="img/v2/pack/scene-bike.webp" width="1600" height="1067" loading="lazy" alt="Велосипед курьера с крафтовым пакетом и багетом у каменной стены">
    <div class="mocks"><img src="img/v2/pack/mock-cup.webp" width="1400" height="1867" loading="lazy" alt="Стакан для кофе с логотипом Булки"><img src="img/v2/pack/mock-seal.webp" width="1400" height="1400" loading="lazy" alt="Свёрток с наклейкой-штампом Булки"><img src="img/v2/pack/still-torn-bread.webp" width="1600" height="900" loading="lazy" alt="Разломленный хлеб на закваске"></div></div>
@@ -357,6 +364,8 @@ form .btn{width:100%;margin-top:6px}
     Object.assign(f.style, { left: first.left + 'px', top: first.top + 'px', width: first.width + 'px', height: first.height + 'px' });
     document.body.append(f);
     const dx = last.left + last.width / 2 - (first.left + first.width / 2), dy = last.top + last.height / 2 - (first.top + first.height / 2), sc = Math.max(.08, last.width / first.width * .9);
+    const land = () => { f.remove(); done(); bagBtn.classList.remove('thud'); void bagBtn.offsetWidth; bagBtn.classList.add('thud'); };
+    if (window.__flyGsap) return window.__flyGsap(f, dx, dy, sc, land);
     f.animate([{ transform: 'translate(0,0) scale(1) rotate(0)', opacity: 1 }, { transform: `translate(${dx * .45}px,${dy * .45 - 90}px) scale(${(1 + sc) / 2}) rotate(-8deg)`, opacity: 1, offset: .55 }, { transform: `translate(${dx}px,${dy}px) scale(${sc}) rotate(-14deg)`, opacity: .2 }],
       { duration: 680, easing: 'cubic-bezier(.45,.05,.25,1)' }).finished.then(() => { f.remove(); done(); bagBtn.classList.remove('thud'); void bagBtn.offsetWidth; bagBtn.classList.add('thud'); });
   };
@@ -365,8 +374,8 @@ form .btn{width:100%;margin-top:6px}
 
   // чек-корзина: фокус внутри, Esc и клик по фону закрывают
   let lastFocus;
-  const open = () => { lastFocus = document.activeElement; $('drawer').hidden = $('scrim').hidden = false; document.body.style.overflow = 'hidden'; $('cart-close').focus(); };
-  const close = () => { $('drawer').hidden = $('scrim').hidden = true; document.body.style.overflow = ''; lastFocus && lastFocus.focus(); };
+  const open = () => { lastFocus = document.activeElement; $('drawer').hidden = $('scrim').hidden = false; document.body.style.overflow = 'hidden'; $('cart-close').focus(); window.__lenis?.stop(); window.__printReceipt?.($('drawer')); };
+  const close = () => { $('drawer').hidden = $('scrim').hidden = true; document.body.style.overflow = ''; window.__lenis?.start(); lastFocus && lastFocus.focus(); };
   $('cart-open').addEventListener('click', open); $('mbar').addEventListener('click', open);
   $('cart-close').addEventListener('click', close);
   $('scrim').addEventListener('click', close);
@@ -397,6 +406,7 @@ form .btn{width:100%;margin-top:6px}
 
   // тихие видео-вставки: играют только в кадре; пауза; при reduce — постер
   document.querySelectorAll('video.loop').forEach(v => {
+    if ('IntersectionObserver' in window) new IntersectionObserver(([e], o) => { if (e.isIntersecting) { v.poster = v.dataset.poster; o.disconnect(); } }, { rootMargin: '600px 0px' }).observe(v); else v.poster = v.dataset.poster;
     const vt = v.parentElement.querySelector('.vt'); let userPaused = reduce;
     const sync = () => { vt.textContent = v.paused ? 'Смотреть' : 'Пауза'; vt.setAttribute('aria-label', v.paused ? 'Запустить видео' : 'Остановить видео'); };
     v.addEventListener('play', sync); v.addEventListener('pause', sync); vt.hidden = false; sync();
